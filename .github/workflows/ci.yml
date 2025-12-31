@@ -7,12 +7,11 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - '3.8'
-          - '3.9'
           - '3.10'
           - '3.11'
           - '3.12'
           - '3.13'
+          - '3.14'
     steps:
     - uses: actions/checkout@v6
     - uses: actions/setup-python@v6
@@ -23,7 +22,7 @@ jobs:
         python -m pip install .[tests]
     - name: Run Tests
       run: |
-        if [[ ${{ matrix.python-version }} == "3.13" ]]; then
+        if [[ ${{ matrix.python-version }} == "3.14" ]]; then
           # For one of the python versions, check code coverage during pytest
           pip install .[codecov]
           python -m pytest --cov metar
@@ -38,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.13"]
+        python-version: ["3.14"]
     steps:
     - uses: actions/checkout@v6
     - uses: actions/setup-python@v6
